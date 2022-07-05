@@ -5,22 +5,21 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
 
-//set up again 
 const firebaseConfig = {
   apiKey: "AIzaSyBGjdEMmbyHXhRNOncPcEtxU-eG16Mg1h0",
   authDomain: "react-firebase-t3h.firebaseapp.com",
+  databaseURL: "https://react-firebase-t3h-default-rtdb.firebaseio.com",
   projectId: "react-firebase-t3h",
   storageBucket: "react-firebase-t3h.appspot.com",
   messagingSenderId: "732101481592",
   appId: "1:732101481592:web:2f4983b286a740d121c98d",
   measurementId: "G-70XRLK41RR"
 };
-
 // back alt + <-
 
 // Initialize Firebase
 
-
+//const analytics = firebase.getAnalytics(firebase.initializeApp(firebaseConfig));
 firebase.initializeApp(firebaseConfig)
 const auth = firebase.auth();
 const googleAuth = new firebase.auth.GoogleAuthProvider ();

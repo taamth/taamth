@@ -105,7 +105,7 @@ export default function Register() {
                                     maxRows={4}
                                     value={values.email}
                                     inputRef={emailRef}
-                                    // onChange={handleChange('email')}
+                                    onChange={handleChange('email')}
                                     // inputRef={handleChange('emailRef')}
                                 />
 
@@ -120,7 +120,7 @@ export default function Register() {
                                         name="password"
                                         inputRef={passwordRef}
                                         // Ref={handleChange('passwordRef')}
-                                        // onChange={handleChange('password')}
+                                        onChange={handleChange('password')}
                                         
                                         endAdornment={
                                             <InputAdornment position="end">

@@ -89,93 +89,96 @@ export default function FirebaseTestConnect() {
     }
 
     console.log('$itemSelect', itemSelect);
-    return (
-        // <stack spacing={2}>
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={4}>
-                        <Item>Add user</Item>
-                        <Grid item xs={6} sx={{ py: '1rem' }}>
-                            <TextField onChange={(e) => setFName(e.target.value)} name="fName" value={fName} id="outlined-firstName" label="firstName" variant="outlined" />
-                        </Grid>
-                        <Grid item xs={6} sx={{ py: '1rem' }}>
-                            <TextField onChange={(e) => setLName(e.target.value)} name="lName" value={lName} id="outlined-lastName" label="lastName" variant="outlined" />
-                        </Grid>
-                        <Button variant="contained" onClick={() => handleAdd()}>Submit</Button>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <Item>List User</Item>
-                        <Grid item xs={12} sx={{ py: '1rem' }}>
-                            {
-                                data.length === 0 ? <Alert severity="warning">No data here — check it out!</Alert>
 
-                                    : <TableContainer component={Paper}>
-                                        <Table aria-label="simple table">
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell align="center">stt</TableCell>
-                                                    <TableCell align="center">First Name</TableCell>
-                                                    <TableCell align="center">Last Name</TableCell>
-                                                    <TableCell align="center">Action</TableCell>
+    return (
+        <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={2}>
+                <Grid item xs={4}>
+                    <Item>Add user</Item>
+
+                    <Grid item xs={6} sx={{ py: '1rem' }}>
+                        <TextField onChange={(e) => setFName(e.target.value)} name="fName" value={fName} id="outlined-firstName" label="firstName" variant="outlined" />
+                    </Grid>
+
+                    <Grid item xs={6} sx={{ py: '1rem' }}>
+                        <TextField onChange={(e) => setLName(e.target.value)} name="lName" value={lName} id="outlined-lastName" label="lastName" variant="outlined" />
+                    </Grid>
+
+                    <Button variant="contained" onClick={() => handleAdd()}>Submit</Button>
+                </Grid>
+
+                <Grid item xs={8}>
+                    <Item>List User</Item>  
+                    <Grid item xs={12} sx={{ py: '1rem' }}>
+                        {
+                            data.length === 0 ? <Alert severity="warning">No data here — check it out!</Alert>
+
+                                : <TableContainer component={Paper}>
+                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell align="center">stt</TableCell>
+                                                <TableCell align="center">First Name</TableCell>
+                                                <TableCell align="center">Last Name</TableCell>
+                                                <TableCell align="center">Action</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+
+                                        <TableBody>
+                                            {data.map((item, index) => (
+                                                <TableRow
+                                                    key={item.id}
+                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                >
+                                                    <TableCell align="center">
+                                                        {index}
+                                                    </TableCell>
+                                                    <TableCell align="center">
+                                                        {item.firstName}
+                                                    </TableCell>
+                                                    <TableCell align="center">{item.lastName}</TableCell>
+                                                    <TableCell align="center">
+                                                        <DeleteIcon onClick={() => handleOpen(item.id)} sx={{ cursor: 'pointer' }} color='primary' />
+                                                    </TableCell>
                                                 </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {data.map((item, index) => (
-                                                    <TableRow
-                                                        key={item.id}
-                                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                    >
-                                                        <TableCell align="center">
-                                                            {index}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {item.firstName}
-                                                        </TableCell>
-                                                        <TableCell align="center">{item.lastName}</TableCell>
-                                                        <TableCell align="center">
-                                                            <DeleteIcon onClick={() => handleOpen(item.id)} sx={{ cursor: 'pointer' }} color='primary' />
-                                                        </TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                            }
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Item>xs=4</Item>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <Item>xs=8</Item>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                        }
                     </Grid>
                 </Grid>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Delete Item
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            Are you sure want to delete item ?
-                        </Typography>
-                        <Grid container spacing={3}>
-                            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                                <Button variant="contained" onClick={handleClose}>Cancel</Button>
-                            </Grid>
-                            <Grid item xs={6} sx={{ display: 'flex', justifyContent: "end" }}>
-                                <Button variant="contained" onClick={() => handleDelete()}>Delete</Button>
-                            </Grid>
+                <Grid item xs={4}>
+                    <Item>xs=4</Item>
+                </Grid>
+                <Grid item xs={8}>
+                    <Item>xs=8</Item>
+                </Grid>
+            </Grid>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Delete Item
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Are you sure want to delete item ?
+                    </Typography>
+                    <Grid container spacing={3}>
+                        <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+                            <Button variant="contained" onClick={handleClose}>Cancel</Button>
                         </Grid>
+                        <Grid item xs={6} sx={{ display: 'flex', justifyContent: "end" }}>
+                            <Button variant="contained" onClick={() => handleDelete()}>Delete</Button>
+                        </Grid>
+                    </Grid>
 
-                    </Box>
-                </Modal>
-            </Box>
-        // </stack>
-
+                </Box>
+            </Modal>
+        </Box>
     )
 }
